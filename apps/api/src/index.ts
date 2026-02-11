@@ -1,11 +1,11 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 
-const app = new Hono();
-
-app.get("/", (c) => {
+const app = new Hono().get("/", (c) => {
 	return c.text("Hello Hono!");
 });
+
+export type BackendType = typeof app;
 
 serve(
 	{
