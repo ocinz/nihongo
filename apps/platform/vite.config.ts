@@ -9,7 +9,7 @@ import viteTsConfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
 	preview: {
-		allowedHosts: ["eventmakers-api.kokage.tech"],
+		allowedHosts: ["kokage.tech", "eventmakers-api.kokage.tech"],
 	},
 	resolve: {
 		alias: {
