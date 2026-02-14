@@ -50,7 +50,7 @@ jobs:
           script: |
             set -e
 
-            APP_DIR=/root/monorepo
+            APP_DIR=/root/nutrilog
             REPO_URL=${{ github.server_url }}/${{ github.repository }}.git
 
             echo "==> Create app directory if not exists"
