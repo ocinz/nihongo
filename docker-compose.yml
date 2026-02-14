@@ -24,6 +24,8 @@ services:
       - "3000:3000"
     depends_on:
       - api
+    environment:
+      - HOST=0.0.0.0
 
 volumes:
   postgres-data:
