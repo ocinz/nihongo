@@ -1,3 +1,4 @@
+export type { RegisterInput } from "./modules/auth/schema";
 export {
 	loginSchema,
 	registerFESchema,

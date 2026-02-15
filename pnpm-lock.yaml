@@ -27,6 +27,9 @@ importers:
       '@hono/zod-validator':
         specifier: ^0.7.6
         version: 0.7.6(hono@4.11.9)(zod@4.3.6)
+      '@nutrilog/schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
       '@prisma/adapter-pg':
         specifier: ^7.3.0
         version: 7.3.0
