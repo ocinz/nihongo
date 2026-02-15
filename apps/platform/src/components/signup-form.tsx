@@ -27,7 +27,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
 	const handleRegister = handleSubmit(async (data) => {
 		await mutateAsync(data);
-		console.log("bye");
 	});
 	return (
 		<Card {...props}>
