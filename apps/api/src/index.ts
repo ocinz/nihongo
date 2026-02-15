@@ -1,9 +1,19 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
 
-const app = new Hono().get("/", (c) => {
-	return c.text("Hello Hono!");
-});
+const app = new Hono()
+	.use(logger())
+	.use(
+		cors({
+			origin: "http://localhost:3000",
+			credentials: true,
+		}),
+	)
+	.get("/", (c) => {
+		return c.json({ message: "Devora - Nutrilog MBG" });
+	});
 
 export type BackendType = typeof app;
 
