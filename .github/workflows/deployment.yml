@@ -16,8 +16,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - uses: actions/setup-node@v4
 
@@ -52,7 +50,7 @@ jobs:
           script: |
             set -e
 
-            APP_DIR=/root/monorepo
+            APP_DIR=/root/nutrilog
             REPO_URL=${{ github.server_url }}/${{ github.repository }}.git
 
             echo "==> Create app directory if not exists"
@@ -76,4 +74,4 @@ jobs:
             echo "==> Docker compose up"
             docker compose -f docker-compose.yml down
             docker compose -f docker-compose.yml pull
-            docker compose -f docker-compose.yml up -d
+            docker compose -f docker-compose.yml up --build -d
