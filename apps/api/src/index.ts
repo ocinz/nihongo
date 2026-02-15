@@ -1,11 +1,12 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { unitRoute } from "./modules/unit/route.js";
-const app = new Hono().get("/", (c) => {
-	return c.text("Hello Hono!");
-})
-.route("/units", unitRoute)
 
+const app = new Hono()
+	.get("/", (c) => {
+		return c.text("Hello Hono!");
+	})
+	.route("/units", unitRoute);
 
 export type BackendType = typeof app;
 
