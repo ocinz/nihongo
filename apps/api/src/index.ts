@@ -5,8 +5,6 @@ import { logger } from "hono/logger";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import { authRoute } from "./modules/auth/route.js";
 import { profileRoute } from "./modules/profile/route.js";
-import { recipeRoute } from "./modules/recipe/route.js";
-import { unitRoute } from "./modules/unit/route.js";
 import type { HonoContext } from "./types.js";
 
 const app = new Hono<HonoContext>()
@@ -22,8 +20,6 @@ const app = new Hono<HonoContext>()
 	})
 	.route("/auth", authRoute)
 	.use(authMiddleware)
-	.route("/units", unitRoute)
-	.route("/recipes", recipeRoute)
 	.route("/profile", profileRoute);
 
 export type BackendType = typeof app;
