@@ -10,7 +10,7 @@ const app = new Hono()
 	.use(logger())
 	.use(
 		cors({
-			origin: ["http://localhost:3000", "https://nutrilog-api.kokage.tech"],
+			origin: ["http://localhost:3000", "https://nutrilog.kokage.tech"],
 			credentials: true,
 		}),
 	)
