@@ -4,11 +4,9 @@ export const createUnitSchema = z.object({
 	name: z.string(),
 });
 
-export type CreateUnitInput = z.infer<typeof createUnitSchema> & {
-	userId: number;
-};
+export type CreateUnitInput = z.infer<typeof createUnitSchema>;
 
-export const updateUnitSchema = z.object({
+export const updateUnitSchema = createUnitSchema.extend({
 	name: z.string().optional(),
 });
 

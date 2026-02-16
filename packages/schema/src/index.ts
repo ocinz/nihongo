@@ -4,3 +4,5 @@ export {
 	registerFESchema,
 	registerSchema,
 } from "./modules/auth/schema";
+export type { CreateUnitInput, UpdateUnitInput } from "./modules/unit/schema";
+export { createUnitSchema, updateUnitSchema } from "./modules/unit/schema";

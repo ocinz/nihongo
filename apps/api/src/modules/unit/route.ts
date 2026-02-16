@@ -1,18 +1,12 @@
 import { zValidator } from "@hono/zod-validator";
+import { createUnitSchema, updateUnitSchema } from "@nutrilog/schema";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
-import {
-	type AuthVariables,
-	authMiddleware,
-} from "../../middleware/authMiddleware.js";
-import { createUnitSchema, updateUnitSchema } from "./schema.js";
 import { createunit, deleteUnits, getUnits, updateUnits } from "./service.js";
 
-export const unitRoute = new Hono<{ Variables: AuthVariables }>()
-	.use("*", authMiddleware)
+export const unitRoute = new Hono()
 	.post("/", zValidator("json", createUnitSchema), async (c) => {
-		const user = c.get("user");
-		const data = { ...c.req.valid("json"), userId: user.id };
+		const data = c.req.valid("json");
 		try {
 			const unit = await createunit(data);
 			return c.json({ success: true, data: unit }, 201);
@@ -22,9 +16,8 @@ export const unitRoute = new Hono<{ Variables: AuthVariables }>()
 		}
 	})
 	.get("/", async (c) => {
-		const user = c.get("user");
 		try {
-			const units = await getUnits(user.id);
+			const units = await getUnits();
 			return c.json({ success: true, data: units });
 		} catch (error) {
 			console.error(error);

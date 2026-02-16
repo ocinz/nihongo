@@ -1,7 +1,7 @@
+import type { CreateUnitInput, UpdateUnitInput } from "@nutrilog/schema";
 import { prisma } from "../../utils/prisma.js";
-import type { createUnitSchema, updateUnitSchema } from "./schema";
 
-export async function createunit(data: createUnitSchema) {
+export async function createunit(data: CreateUnitInput) {
 	return prisma.unit.create({
 		data,
 		select: {
@@ -23,7 +23,7 @@ export async function getUnits(id?: string) {
 	});
 }
 
-export async function updateUnits(id: string, data: updateUnitSchema) {
+export async function updateUnits(id: string, data: UpdateUnitInput) {
 	return prisma.unit.update({
 		where: { id },
 		data,
