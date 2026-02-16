@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { authRoute } from "./modules/auth/route.js";
+import { recipeRoute } from "./modules/recipe/route.js";
 import { unitRoute } from "./modules/unit/route.js";
 
 const app = new Hono()
@@ -17,8 +18,9 @@ const app = new Hono()
 		return c.json({ message: "Devora - Nutrilog MBG" });
 	})
 	.route("/auth", authRoute)
-	.route("/units", unitRoute);
-export type BackendType = typeof app;
+	.route("/units", unitRoute)
+	.route("/recipes", recipeRoute);
+
 serve(
 	{
 		fetch: app.fetch,
