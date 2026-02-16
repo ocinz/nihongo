@@ -18,7 +18,7 @@ const app = new Hono()
 	})
 	.route("/auth", authRoute)
 	.route("/units", unitRoute);
-
+export type BackendType = typeof app;
 serve(
 	{
 		fetch: app.fetch,

@@ -14,5 +14,24 @@ CREATE TABLE "User" (
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Unit" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Unit_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "recipe" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "instruction" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "recipe_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");

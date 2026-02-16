@@ -1,8 +1,11 @@
-export type { RegisterInput } from "./modules/auth/schema";
+export type { RegisterInput } from "./modules/auth/schema.js";
 export {
 	loginSchema,
 	registerFESchema,
 	registerSchema,
-} from "./modules/auth/schema";
-export type { CreateUnitInput, UpdateUnitInput } from "./modules/unit/schema";
-export { createUnitSchema, updateUnitSchema } from "./modules/unit/schema";
+} from "./modules/auth/schema.js";
+export type {
+	CreateUnitInput,
+	UpdateUnitInput,
+} from "./modules/unit/schema.js";
+export { createUnitSchema, updateUnitSchema } from "./modules/unit/schema.js";

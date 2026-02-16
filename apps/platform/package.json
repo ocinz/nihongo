@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "pnpm with-env vite dev --port 3000",
 		"build": "vite build",
-		"preview": "vite preview",
+		"preview": "pnpm with-env vite preview",
+		"start": "pnpm with-env node .output/server/index.mjs",
 		"test": "vitest run",
 		"with-env": "dotenv -e ../../.env --"
 	},
