@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { authRoute } from "./modules/auth/route.js";
 import { unitRoute } from "./modules/unit/route.js";
+import { recipeRoute } from "./modules/recipe/route.js";
 
 const app = new Hono()
 	.use(logger())
@@ -17,7 +18,8 @@ const app = new Hono()
 		return c.json({ message: "Devora - Nutrilog MBG" });
 	})
 	.route("/auth", authRoute)
-	.route("/units", unitRoute);
+	.route("/units", unitRoute)
+	.route("/recipes", recipeRoute);
 
 serve(
 	{
