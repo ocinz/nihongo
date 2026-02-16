@@ -3,77 +3,78 @@ ERD : [DRAW SQL](https://drawsql.app/teams/coinz/diagrams/nutrilog)
 
 ---
 
-Cara mengerjakan:
+### Langkah Setup & Pengerjaan
 
-1. Buat folder baru
-2. Buka folder di VSCode
-3. Buka terminal di VSCode
-4. Inisialisasi git:
-
-```bash
-git init
-```
-
-5. Set repository url
+1. Clone Repository
+   ❌ Jangan `git init` manual  
+   ✅ Gunakan clone agar history tetap bersih
 
 ```bash
-git remote add origin git@github.com:Devora-Devscale/Nutrilog.git
+git clone git@github.com:Devora-Devscale/Nutrilog.git
+cd Nutrilog
 ```
 
-6. Pull repository
+2. install dependencies
 
 ```bash
-git pull origin main
+pnpm install
 ```
 
-7. Buat branch baru
+3. Buat file .env dari contoh file .env.example
+4. Buat branch baru
 
 ```bash
 git checkout -b feat/nama-fitur
 ```
 
-8. Pengembangan fitur
-   - buat file .env dari contoh file .env.example
-   - untuk membuat environment development
-     ```bash
-     docker compose -f docker-compose.dev.yml up -d
-     ```
-   - tambahkan model pada file schema.prisma
-   - db migrate:
-     ```bash
-     pnpm db:migrate
-     ```
-   - db generate:
-     ```bash
-     pnpm db:generate
-     ```
-   - run semua project:
+5. untuk membuat environment development
 
-     ```bash
-     moon :dev
-     ```
+```bash
+docker compose -f docker-compose.dev.yml up -d
+```
 
-     atau
+6. tambahkan model pada file schema.prisma
+7. DB migrate:
 
-     ```bash
-     pnpm run dev
-     ```
+```bash
+pnpm db:migrate
+```
 
-   - atau bisa dijalankan satu per satu (dengan 2 terminal)
-     ```bash
-         pnpm dev:api
-     ```
-     ```bash
-         pnpm dev:platform
-     ```
+8. DB generate:
 
-9. Setelah selesai mengerjakan. Check format sebelum melakukan git commit.
+```bash
+pnpm db:generate
+```
+
+9. Run semua project:
+
+```bash
+moon :dev
+```
+
+atau
+
+```bash
+pnpm run dev
+```
+
+atau bisa jalankan satu per satu (dengan 2 terminal)
+
+```bash
+pnpm dev:api
+```
+
+```bash
+pnpm dev:platform
+```
+
+10. Setelah selesai mengerjakan. Check format sebelum melakukan git commit.
 
 ```bash
 pnpm lint
 ```
 
-10. Fix format jika ada yang tidak sesuai
+11. Fix format jika ada yang tidak sesuai
 
 ```bash
 pnpm lint:fix
@@ -81,22 +82,95 @@ pnpm lint:fix
 
 jika masih ada yang error, berarti perlu diperbaiki secara manual. Setelah selesai diperbaiki lanjutkan dengan langkah 9.
 
-11. Stage kode
+12. Stage kode
 
 ```bash
 git add .
 ```
 
-12. Commit kode
+13. Commit kode
 
 ```bash
 git commit -m "Pesan commit (gunakan best practice prefix commit message)"
 ```
 
-13. Push kode ke github
+14. Push kode ke github
 
 ```bash
 git push origin feat/nama-branch
 ```
 
-14. Buat pull request dari kode branch ke main. Assign mas Indra as reviewer dan kalian sebagai assignee
+15. Buat pull request dari kode branch ke main. Assign mas Indra as reviewer dan kalian sebagai assignee
+
+### Langkah Develop API
+
+1. Buat model yang dibutuhkan di prisma schema (termasuk enum)
+2. jalankan prisma migrate & generate di root:
+
+```
+pnpm db:migrate
+pnpm db:generate
+```
+
+3. Buat modules baru di apps/api
+
+```
+import {schemaValidasi} from "@nutrilog/schema"
+export const newRoute = new Hono().get(/,
+  zValidator("json", schemaValidasi),
+  async(c)=>{
+
+  // your code here
+  }
+)
+```
+
+kalau ada request jangan lupa bikin validasi di packages/schema.
+`packages/schema/modules/namafile.ts`
+
+```bash
+export const namaSchema = z.object({
+  name: z.email(),
+  email: z.string(),
+  password: z.string()
+})
+
+export type SchemaInput = z.infer<typeof namaSchema>
+```
+
+`packages/schema/index.ts`
+
+```bash
+export {namaSchema} from "./modules/namafile"
+export type {namaSchema} from "./modules/namafile"
+```
+
+### Langkah Develop Platform
+
+Perhatian:
+
+- UI menggunakan ShadCN, silakan tambahkan komponen sesuai kebutuhan
+- Jika membuat komponen sendiri gunakan TailwindCSS
+- Idealnya menggunakan React Hook Form + Zod untuk validasi form
+- Gunakan TanStack Query + Hono Client untuk API call
+- Hooks boleh dibuat langsung di dalam folder routes
+  ```
+  namaroutes/
+  ├──index.ts
+  ├──-hook.ts (di depannya ada simbol hyphen)
+  ```
+- Semua routes yang membutuhkan authentikasi harus berada di dalam folder \_authed:
+  `apps/platform/src/routes/_authed/`
+
+###### Contoh struktur:
+
+> routes/
+> ├── login/
+> ├── register/
+> └── \_authed/
+
+      ├── dashboard/
+      └── routebaru/
+
+Untuk membuat halaman baru:
+`apps/platform/src/routes/routebaru/index.tsx`
