@@ -3,8 +3,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { authRoute } from "./modules/auth/route.js";
-import { unitRoute } from "./modules/unit/route.js";
 import { recipeRoute } from "./modules/recipe/route.js";
+import { unitRoute } from "./modules/unit/route.js";
 
 const app = new Hono()
 	.use(logger())

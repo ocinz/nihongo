@@ -2,7 +2,12 @@ import { zValidator } from "@hono/zod-validator";
 import { createRecipeSchema, updateRecipeSchema } from "@nutrilog/schema";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
-import { createRecipe, deleteRecipes, getRecipes, updateRecipes } from "./service.js";
+import {
+	createRecipe,
+	deleteRecipes,
+	getRecipes,
+	updateRecipes,
+} from "./service.js";
 
 export const recipeRoute = new Hono()
 	.post("/", zValidator("json", createRecipeSchema), async (c) => {
