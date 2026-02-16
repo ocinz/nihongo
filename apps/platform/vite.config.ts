@@ -8,6 +8,7 @@ import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
+	envDir: "../../.env",
 	preview: {
 		allowedHosts: ["eventmakers-api.kokage.tech", "all"],
 	},
