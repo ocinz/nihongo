@@ -21,6 +21,8 @@ const app = new Hono()
 	.route("/units", unitRoute)
 	.route("/recipes", recipeRoute);
 
+export type BackendType = typeof app;
+
 serve(
 	{
 		fetch: app.fetch,
