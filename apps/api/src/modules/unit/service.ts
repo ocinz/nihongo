@@ -12,9 +12,9 @@ export async function createunit(data: createUnitSchema) {
 	});
 }
 
-export async function getUnits(userId?: string) {
+export async function getUnits(id?: string) {
 	return prisma.unit.findMany({
-		where: userId ? { userId } : undefined,
+		where: id ? { id } : undefined,
 		select: {
 			id: true,
 			name: true,

@@ -13,6 +13,23 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  name String
+  school_id String?
+  created_at DateTime @default(now())
+  role Role?
+}
+
+enum Role {
+  KITCHEN_STAFF
+  WAREHOUSE_MANAGER
+  SCHOOL_ADMIN
+  VENDOR_MANAGER
+  AUDITOR
+}
 model Unit {
   id        String   @id @default(uuid())
   name      String?
