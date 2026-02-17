@@ -11,7 +11,6 @@ export interface HonoContext {
 			id: string;
 			email: string;
 			role: string;
-			school_id: string;
 		};
 	};
 }

@@ -7,7 +7,6 @@ export const getUser = async (id: string) => {
 			id: true,
 			email: true,
 			name: true,
-			school_id: true,
 			role: true,
 		},
 	});
