@@ -1,6 +1,6 @@
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import type { RegisterInput } from "@nutrilog/schema";
-import { registerFESchema } from "@nutrilog/schema";
+import type { RegisterInput } from "@nihongo/schema";
+import { registerFESchema } from "@nihongo/schema";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";

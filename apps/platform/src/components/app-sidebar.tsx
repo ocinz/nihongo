@@ -1,5 +1,6 @@
 "use client";
 
+import { useAtomValue } from "jotai";
 import {
 	BookOpen,
 	Bot,
@@ -8,7 +9,7 @@ import {
 	SquareTerminal,
 } from "lucide-react";
 import type * as React from "react";
-
+import { userAtom } from "@/atoms/user.atom";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -22,43 +23,39 @@ import {
 
 // This is sample data.
 const data = {
-	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
-	},
 	teams: [
 		{
-			name: "Nutrilog",
+			name: "Nihongo",
 			logo: GalleryVerticalEnd,
-			plan: "Devora Devscale",
+			plan: "Nihongo by Kokage",
 		},
 	],
 	navMain: [
 		{
-			title: "Meal Plan",
-			url: "/",
+			title: "Flashcard",
+			url: "/flashcard",
 			icon: SquareTerminal,
 		},
 		{
-			title: "Recipe",
-			url: "/recipe",
+			title: "Bunpou",
+			url: "/grammar",
 			icon: Bot,
 		},
 		{
-			title: "Ingredient",
-			url: "/ingredient",
+			title: "Exam",
+			url: "/tryout",
 			icon: BookOpen,
 		},
 		{
-			title: "User Management",
-			url: "/user-management",
+			title: "Learning Path",
+			url: "/learning-path",
 			icon: Settings2,
 		},
 	],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const user = useAtomValue(userAtom);
 	return (
 		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader>
@@ -68,7 +65,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavMain items={data.navMain} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser user={user} />
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>

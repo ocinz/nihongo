@@ -6,9 +6,11 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import type { InferResponseType } from "hono";
 import { NotFound } from "@/components/not-found";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import type { api } from "@/utils/api";
 import tanstackQueryConfig from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -17,9 +19,10 @@ declare module "@tanstack/react-router" {
 		crumb?: { module: string; action?: string; module_path?: string };
 	}
 }
-
+type User = InferResponseType<typeof api.profile.me.$get>["user"];
 interface MyRouterContext {
 	queryClient: QueryClient;
+	user: User;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
@@ -33,7 +36,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Nutrilog by Devora Devscale",
+				title: "Nihongo by Kokage",
 			},
 		],
 		links: [

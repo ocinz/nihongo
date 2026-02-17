@@ -11,14 +11,16 @@ const app = new Hono<HonoContext>()
 	.use(logger())
 	.use(
 		cors({
-			origin: ["http://localhost:3000", "https://nutrilog.kokage.tech"],
+			origin: ["http://localhost:3000", "https://nihongo.kokage.tech"],
 			credentials: true,
 		}),
 	)
+	// unprotected
 	.get("/", (c) => {
-		return c.json({ message: "Devora - Nutrilog MBG" });
+		return c.json({ message: "Nihongo" });
 	})
 	.route("/auth", authRoute)
+	//protected
 	.use(authMiddleware)
 	.route("/profile", profileRoute);
 

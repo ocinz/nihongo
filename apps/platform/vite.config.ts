@@ -10,10 +10,10 @@ import viteTsConfigPaths from "vite-tsconfig-paths";
 const config = defineConfig({
 	envDir: "../../",
 	preview: {
-		allowedHosts: ["nutrilog-api.kokage.tech", "all"],
+		allowedHosts: ["nihongo-api.kokage.tech", "all"],
 	},
 	server: {
-		allowedHosts: ["nutrilog-api.kokage.tech", "all"],
+		allowedHosts: ["nihongo-api.kokage.tech", "all"],
 	},
 	resolve: {
 		alias: {

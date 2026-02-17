@@ -1,5 +1,5 @@
 {
-	"name": "@nutrilog/schema",
+	"name": "@nihongo/schema",
 	"version": "1.0.0",
 	"description": "",
 	"main": "./dist/index.js",

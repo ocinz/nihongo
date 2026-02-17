@@ -2,9 +2,12 @@ import {
 	createFileRoute,
 	Link,
 	Outlet,
+	redirect,
 	useMatches,
 } from "@tanstack/react-router";
+import { useHydrateAtoms } from "jotai/utils";
 import { Fragment } from "react/jsx-runtime";
+import { userAtom } from "@/atoms/user.atom";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
 	Breadcrumb,
@@ -20,12 +23,22 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/components/ui/sidebar";
-
+import { api } from "@/utils/api";
 export const Route = createFileRoute("/_authed")({
 	component: RouteComponent,
+	loader: async () => {
+		const response = await api.profile.me.$get();
+		if (!response.ok) {
+			throw redirect({ to: "/login" });
+		}
+		return await response.json();
+	},
 });
 
 function RouteComponent() {
+	const { user } = Route.useRouteContext();
+	useHydrateAtoms([[userAtom, user]]);
+
 	const matches = useMatches();
 	const breadCrumbs = matches
 		.filter((match) => match.staticData.crumb)

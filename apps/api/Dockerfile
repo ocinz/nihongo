@@ -11,7 +11,7 @@ COPY packages/ packages/
 COPY apps/api/package.json apps/api/
 RUN pnpm install
 COPY ./ ./
-RUN pnpm --filter @nutrilog/schema build
+RUN pnpm --filter @nihongo/schema build
 WORKDIR /app/apps/api
 RUN pnpm prisma generate
 

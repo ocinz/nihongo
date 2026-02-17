@@ -3,6 +3,13 @@ import { LoginForm } from "@/components/login-form";
 
 export const Route = createFileRoute("/login/")({
 	component: RouteComponent,
+	// beforeLoad: ({ context }) => {
+	// 	console.log({ user: context.user });
+
+	// 	if (!context.user) {
+	// 		throw redirect({ to: "/" })
+	// 	}
+	// }
 });
 
 function RouteComponent() {

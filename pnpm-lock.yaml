@@ -27,7 +27,7 @@ importers:
       '@hono/zod-validator':
         specifier: ^0.7.6
         version: 0.7.6(hono@4.11.9)(zod@4.3.6)
-      '@nutrilog/schema':
+      '@nihongo/schema':
         specifier: workspace:*
         version: link:../../packages/schema
       '@prisma/adapter-pg':
@@ -76,7 +76,7 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.71.1(react@19.2.4))
-      '@nutrilog/schema':
+      '@nihongo/schema':
         specifier: workspace:*
         version: link:../../packages/schema
       '@tailwindcss/vite':

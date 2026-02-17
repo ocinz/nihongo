@@ -15,7 +15,7 @@ COPY packages/schema/ packages/schema/
 RUN pnpm install
 
 COPY . .
-RUN pnpm --filter @nutrilog/schema build
+RUN pnpm --filter @nihongo/schema build
 WORKDIR /app/apps/platform
 RUN pnpm build
 

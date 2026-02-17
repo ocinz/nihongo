@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authed/")({
+export const Route = createFileRoute("/_authed/grammar/")({
 	component: RouteComponent,
 	staticData: {
 		crumb: {
-			module: "Home",
-			module_path: "/",
+			module: "Grammar",
 		},
 	},
 });
 
 function RouteComponent() {
-	return <div>Hello "/_authed/"!</div>;
+	return <div>Hello "/_authed/grammar/"!</div>;
 }
