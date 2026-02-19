@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
+		"@nihongo/api": "workspace:*",
 		"@nihongo/schema": "workspace:*",
 		"@tailwindcss/vite": "^4.0.6",
 		"@tanstack/react-devtools": "^0.7.0",

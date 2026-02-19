@@ -5,13 +5,15 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "pnpm --parallel --filter=api --filter=platform run dev",
+		"build": "pnpm --parallel --filter=api --filter=platform --filter=schema run build",
+		"build:api": "pnpm --filter=api run build",
 		"dev:api": "pnpm --filter api dev",
 		"dev:platform": "pnpm --filter platform dev",
 		"db:migrate": "pnpm --filter api run db:migrate",
 		"db:generate": "pnpm --filter api run db:generate",
 		"db:deploy": "pnpm --filter api run db:deploy",
 		"db:studio": "pnpm --filter api run db:studio",
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"db:reset": "pnpm --filter api run db:reset",
 		"prepare": "husky",
 		"lint": "pnpm exec biome check",
 		"lint:fix": "pnpm exec biome check --write --unsafe"

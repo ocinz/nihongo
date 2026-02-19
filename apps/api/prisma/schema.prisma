@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id @default(uuid(7))
   email String @unique
   password String
   name String
@@ -27,4 +27,19 @@ enum Role {
   TEACHER
   STAFF
   ADMIN
+}
+model Card {
+  id        String   @id @default(uuid(7))
+  front_text String
+  back_text  String
+  example   String?
+
+  created_at DateTime @default(now())
+
+  card_reviews         CardReview[]
+}
+model CardReview {
+  id String @id @default(uuid(7))
+  card_id String
+  card Card @relation(fields: [card_id], references: [id])
 }

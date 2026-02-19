@@ -8,6 +8,10 @@ import { comparePassword, hashPassword } from "../../utils/password.js";
 import { prisma } from "../../utils/prisma.js";
 
 export const authRoute = new Hono()
+	.post("/logout", async (c) => {
+		deleteCookie(c, "access_token");
+		return c.json({ message: "logout successfully" });
+	})
 	.post("/login", zValidator("json", loginSchema), async (c) => {
 		const body = c.req.valid("json");
 
@@ -66,8 +70,4 @@ export const authRoute = new Hono()
 			},
 		});
 		return c.json({ message: "User registered successfully" }, 201);
-	})
-	.post("/logout", async (c) => {
-		deleteCookie(c, "access_token");
-		return c.json({ message: "logout successfully" });
 	});
