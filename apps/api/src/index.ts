@@ -12,7 +12,11 @@ const app = new Hono<HonoContext>()
 	.use(logger())
 	.use(
 		cors({
-			origin: ["http://localhost:3000", "https://nihongo.kokage.tech"],
+			origin: [
+				"http://localhost:3000",
+				"http://localhost:3010",
+				"https://nihongo.kokage.tech",
+			],
 			credentials: true,
 		}),
 	)
